@@ -48,37 +48,38 @@ class Game
     end
 
     def make_choice
-        for player in @players.values
-            draw_board()
-            puts "It's #{player} turn"
-            puts "Please select an available cell from the board: "
-            while (true)
-                choice = gets.chomp.to_i
-                if (@choices.include?(choice))
-                    @choices[choice-1] = @players.key(player)
-                    break
+        
+            for player in @players.values # 2
+                if @counter < 9
+                    draw_board()
+                    puts "It's #{player} turn"
+                    puts "Please select an available cell from the board: "
+                    while (true)
+                        choice = gets.chomp.to_i
+                        if (@choices.include?(choice))
+                            @counter += 1
+                            @choices[choice-1] = @players.key(player)
+                            break
+                        else
+                            puts "Invalid input, #{player} should try again"   
+                        end
+                    end
                 else
-                    puts "Invalid input, #{player} should try again"
+                    @game_over = true
+                    return
                 end
             end
-        end
+        
     end
 
-    def update_board
-
-
-
-    end
 
     def start_game
         initialize_game
         until (@game_over)
-            if(@counter < 9)
-                make_choice
-                @counter += 1
-            else
-                @game_over = true
-            end
+            
+            make_choice
+            puts 'Game over'
+            
         end
     end
 
