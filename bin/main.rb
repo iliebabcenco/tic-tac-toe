@@ -16,6 +16,8 @@ class Game
     @winner = 'TIE'
   end
 
+  private
+
   def draw_board
     puts '+---+---+---+'
     puts "| #{@choices[0]} | #{@choices[1]} | #{@choices[2]} |"
@@ -69,6 +71,8 @@ class Game
       draw_board
     end
   end
+
+  public
 
   def start_game
     initialize_game
