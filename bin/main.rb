@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
-class Game
+require_relative '../lib/game_logic.rb'
+
+class Game 
+  include GameLogic
   attr_accessor :player1, :player2, :players
 
   def initialize()
@@ -49,30 +52,14 @@ class Game
       puts "It's #{player}'s turn"
       puts 'Please select an available cell from the board: '
       # there should be full logic of main process
+     
       main_process_logic(player)
       # end of logic
     end
   end
 
   # this method is just a part of future logic
-  def main_process_logic(player)
-    loop do
-      if @counter < 9
-        choice = gets.chomp.to_i
-        if @choices.include?(choice)
-          @counter += 1
-          @choices[choice - 1] = @players.key(player)
-          break
-        else
-          puts "Invalid input, #{player} should try again (input should be a number form 1 to 9)"
-        end
-      else
-        @winner = @player1
-        @game_over = true
-        return 0
-      end
-    end
-  end
+  
 
   def start_game
     initialize_game
