@@ -49,8 +49,6 @@ class Game
   def main_process
     
     @players.each do |player|
-      
-      draw_board
       if game_over
         break
       else
@@ -60,8 +58,12 @@ class Game
         # there should be full logic of main process
         main_process_logic(player)
         # end of logic
-      end  
+        
+      end
+      draw_board 
+       
     end
+     
   end
 
   # this method is just a part of future logic
@@ -69,7 +71,7 @@ class Game
 
   def start_game
     initialize_game
-    
+    draw_board
     main_process until game_over
     if @winner == 'TIE'
       puts "It's TIE"
@@ -77,7 +79,7 @@ class Game
       puts "#{@winner} is Winner!"
     end
     puts
-    puts 'Game over'
+    puts 'Game over. Thank you for playing!'
   end
 
 end
