@@ -2,7 +2,7 @@ class Player
 
     attr_accessor :name, :answers, :symbol
 
-    initialize (name)
+    def initialize ()
         @name = name
         @answers = []
         @symbol = ""
