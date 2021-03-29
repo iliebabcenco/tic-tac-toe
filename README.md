@@ -21,9 +21,9 @@ Players soon discover that the best play from both parties leads to a draw. Henc
 
 In order to play or get a local copy you can clone this repository by using:
 
-git clone git@github.com:iliebabcenco/tic-tac-toe.git
+`git clone git@github.com:iliebabcenco/tic-tac-toe.git`
 
-After cloning the repository, open the terminal, cd into the directory where the game is located, to play the game type ruby bin/main.rb
+After cloning the repository, open the terminal, `cd into the directory` where the game is located, to play the game type ruby bin/main.rb
 
 ### Prerequisites
 
