@@ -1,39 +1,43 @@
-require_relative 'player_logic.rb'
+require_relative 'player_logic'
 
 module GameLogic
-  @@answers = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
   def main_process_logic(player)
-        check_outcome(player)
-        game_over
+    check_outcome(player)
+    game_over
   end
 
   private
 
   def check_outcome(player)
-    if(player.answers.length>=3)
-        @@answers.each do |subArray| 
-            intersection = subArray & player.answers
-            if intersection == subArray
-                @game_over = true
-                @winner = player.name
-                break
-            elsif player.counter >= 5 && intersection != subArray
-                @game_over = true
-                @winner = 'TIE'
-            
-            end
-        end
+    return unless player.answers.length >= 3
+
+    answers = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+    answers.each do |sub_array|
+      intersection = sub_array & player.answers
+      if intersection == sub_array
+        @game_over = true
+        @winner = player.name
+        break
+      elsif player.counter >= 5 && intersection != sub_array
+        @game_over = true
+        @winner = 'TIE'
+      end
     end
   end
 
   def collect_answers_of_player(player)
-      player.answers << player.choice
-      player.counter += 1
-      @choices[player.choice - 1] = player.symbol
+    player.answers << player.choice
+    player.counter += 1
+    @choices[player.choice - 1] = player.symbol
   end
 
   def game_over
     @game_over
   end
 
+  def valid_name(name)
+    return false if name.length <= 1 || name.length > 20 || !name.match(/^[a-z]+$/i)
+
+    true
+  end
 end

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-require_relative '../lib/game_logic.rb'
-require_relative '../lib/player_logic.rb'
+require_relative '../lib/game_logic'
+require_relative '../lib/player_logic'
 
-class Game 
+class Game
   include GameLogic
   attr_accessor :player1, :player2, :players
 
@@ -27,49 +27,46 @@ class Game
   end
 
   def initialize_game
-    puts
     puts 'Welcome to the game'
-    puts
     puts 'Enter Player 1 name: '
     @player1.name = gets.chomp
-    @player1.symbol = "X"
+    until valid_name(@player1.name)
+      puts 'Please enter a valid name (the length should be between 1 and 20, no symbols or digits'
+      @player1.name = gets.chomp
+    end
+    @player1.symbol = 'X'
     puts 'Enter player 2 name: '
     @player2.name = gets.chomp
-    @player2.symbol = "O"
+    until valid_name(@player2.name)
+      puts 'Please enter a valid name (the length should be between 1 and 20, no symbols or digits'
+      @player2.name = gets.chomp
+    end
+    @player2.symbol = 'O'
     sleep(1)
-    puts
     puts "#{@player1.name} will be #{@player1.symbol}, and #{@player2.name} will be #{@player2.symbol}."
     sleep(1)
-    puts
     puts "Let's start!"
-    puts
     sleep(1)
   end
 
   def main_process
-    
     @players.each do |player|
-      if game_over
-        break
-      else
-        puts
-        puts "It's #{player.name}'s turn"
-        puts 'Please select an available cell from the board: '
-        
-        good_answer = false
-        until good_answer
-          player.choice = gets.chomp.to_i
-          if @choices.include?(player.choice)
-              collect_answers_of_player(player)
-              good_answer = true
-          else
-            puts "Invalid input, #{player.name} should try again (input should be a number form 1 to 9)"
-            next
-          end
+      break if game_over
+
+      puts "It's #{player.name}'s turn"
+      puts 'Please select an available cell from the board: '
+      good_answer = false
+      until good_answer
+        player.choice = gets.chomp.to_i
+        if @choices.include?(player.choice)
+          collect_answers_of_player(player)
+          good_answer = true
+        else
+          puts "Invalid input, #{player.name} should try again (input should be a number form 1 to 9)"
         end
-          main_process_logic(player)
       end
-      draw_board 
+      main_process_logic(player)
+      draw_board
     end
   end
 
@@ -87,7 +84,6 @@ class Game
     puts 'Game over. Thank you for playing!'
     puts
   end
-
 end
 
 game = Game.new
