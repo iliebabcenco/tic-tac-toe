@@ -55,19 +55,23 @@ class Game
         puts
         puts "It's #{player.name}'s turn"
         puts 'Please select an available cell from the board: '
-        # there should be full logic of main process
-        main_process_logic(player)
-        # end of logic
         
+        good_answer = false
+        until good_answer
+          player.choice = gets.chomp.to_i
+          if @choices.include?(player.choice)
+              collect_answers_of_player(player)
+              good_answer = true
+          else
+            puts "Invalid input, #{player.name} should try again (input should be a number form 1 to 9)"
+            next
+          end
+        end
+          main_process_logic(player)
       end
       draw_board 
-       
     end
-     
   end
-
-  # this method is just a part of future logic
-  
 
   def start_game
     initialize_game
