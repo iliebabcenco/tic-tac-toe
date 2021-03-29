@@ -30,12 +30,22 @@ module GameLogic
   def check_outcome(player)
 
     if(player.answers.length>=3)
-        @@answers.each do |subArray|
-            subArray == player.answers 
-            @game_over = true
-            @winner = player.name
+        @@answers.each do |subArray| 
+            intersection = subArray & player.answers
+            if intersection == player.answers 
+                @game_over = true
+                @winner = player.name
+            elsif player.counter >= 5 && intersection != player.answers
+                @game_over = true
+                @winner = 'TIE'
+            elsif player.counter >= 5
+                @game_over = true
+                @winner = player.name
+            end
         end
+    
     end
+
   end
 
   def collect_answers_of_player(player)
@@ -43,6 +53,7 @@ module GameLogic
      choice = player.make_choice
       if @choices.include?(choice)
           player.answers << choice
+          player.counter += 1
           @choices[choice - 1] = player.symbol
       else
         puts "Invalid input, #{player.name} should try again (input should be a number form 1 to 9)"
@@ -50,7 +61,7 @@ module GameLogic
   end
 
   def game_over
-    @game_over ? @winner : 'Its a tie'
+    @game_over
   end
 
 end

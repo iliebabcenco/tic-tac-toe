@@ -47,14 +47,20 @@ class Game
   end
 
   def main_process
+    
     @players.each do |player|
+      
       draw_board
-      puts
-      puts "It's #{player.name}'s turn"
-      puts 'Please select an available cell from the board: '
-      # there should be full logic of main process
-      main_process_logic(player)
-      # end of logic
+      if game_over
+        break
+      else
+        puts
+        puts "It's #{player.name}'s turn"
+        puts 'Please select an available cell from the board: '
+        # there should be full logic of main process
+        main_process_logic(player)
+        # end of logic
+      end  
     end
   end
 
@@ -64,7 +70,7 @@ class Game
   def start_game
     initialize_game
     
-    main_process until @game_over
+    main_process until game_over
     if @winner == 'TIE'
       puts "It's TIE"
     else
