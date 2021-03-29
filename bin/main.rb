@@ -63,6 +63,7 @@ class Game
 
   def start_game
     initialize_game
+    
     main_process until @game_over
     if @winner == 'TIE'
       puts "It's TIE"
@@ -72,6 +73,7 @@ class Game
     puts
     puts 'Game over'
   end
+
 end
 
 game = Game.new

@@ -5,11 +5,9 @@ module GameLogic
     def main_process_logic(player)
         collect_answers_of_player(player)
         p player
-        if check_outcome(player.answers)
-            "#{player.name} is winner."
-        else
-            'Its a tie'
-        end
+        check_outcome(player)
+        game_over
+        
     
         # loop do
     #   if @counter < 9
@@ -29,16 +27,20 @@ module GameLogic
     # end
   end
 
-  def check_outcome(array)
-    if(array.length>=3)
+  def check_outcome(player)
+
+    if(player.answers.length>=3)
         @@answers.each do |subArray|
-            subArray == array 
+            subArray == player.answers 
+            @game_over = true
+            @winner = player.name
         end
     end
   end
 
   def collect_answers_of_player(player)
-      choice = player.make_choice
+     
+     choice = player.make_choice
       if @choices.include?(choice)
           player.answers << choice
           @choices[choice - 1] = player.symbol
@@ -48,7 +50,7 @@ module GameLogic
   end
 
   def game_over
-
+    @game_over ? @winner : 'Its a tie'
   end
 
 end
