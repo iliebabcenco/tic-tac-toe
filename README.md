@@ -19,7 +19,9 @@ Players soon discover that the best play from both parties leads to a draw. Henc
 
 ## Getting Started
 
-In order to play or get a local copy you can clone this repository by using git clone git@github.com:iliebabcenco/tic-tac-toe.git
+In order to play or get a local copy you can clone this repository by using:
+
+git clone git@github.com:iliebabcenco/tic-tac-toe.git
 
 ### Prerequisites
 
