@@ -9,14 +9,13 @@ module GameLogic
   end
 
   def check_outcome(player)
-
     if(player.answers.length>=3)
         @@answers.each do |subArray| 
             intersection = subArray & player.answers
-            if intersection == player.answers 
+            if intersection == subArray
                 @game_over = true
                 @winner = player.name
-            elsif player.counter >= 5 && intersection != player.answers
+            elsif player.counter >= 5 && intersection != subArray
                 @game_over = true
                 @winner = 'TIE'
             elsif player.counter >= 5
@@ -24,9 +23,7 @@ module GameLogic
                 @winner = player.name
             end
         end
-    
     end
-
   end
 
   def collect_answers_of_player(player)

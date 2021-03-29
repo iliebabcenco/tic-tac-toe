@@ -73,6 +73,7 @@ class Game
     initialize_game
     draw_board
     main_process until game_over
+    puts
     if @winner == 'TIE'
       puts "It's TIE"
     else
@@ -80,6 +81,7 @@ class Game
     end
     puts
     puts 'Game over. Thank you for playing!'
+    puts
   end
 
 end
