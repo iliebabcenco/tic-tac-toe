@@ -30,15 +30,18 @@ module GameLogic
   end
 
   def collect_answers_of_player(player)
-     
-     choice = player.make_choice
+    good_answer = false
+    until good_answer
+      choice = player.make_choice
       if @choices.include?(choice)
           player.answers << choice
           player.counter += 1
           @choices[choice - 1] = player.symbol
+          good_answer = true
       else
         puts "Invalid input, #{player.name} should try again (input should be a number form 1 to 9)"
       end
+    end
   end
 
   def game_over
