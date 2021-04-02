@@ -9,19 +9,24 @@ describe Player do
   let(:choice) { 9 }
   describe '#initialize' do
     it 'checking setters and getters for name' do
-      expect(name).to eql('ilie')
+      player.name = 'ilie'
+      expect(player.name).to eql(name)
     end
     it 'checking setters and getters for answers' do
-      expect(answers).to eql([1, 2, 3])
+      player.answers = [1, 2, 3]
+      expect(player.answers).to eql(answers)
     end
     it 'checking setters and getters for symbol' do
-      expect(symbol).to eql('X')
+      player.symbol = 'X'
+      expect(player.symbol).to eql(symbol)
     end
     it 'checking setters and getters for counter' do
-      expect(counter).to eql(3)
+      player.counter = 3
+      expect(player.counter).to eql(counter)
     end
     it 'checking setters and getters for choice' do
-      expect(choice).to eql(9)
+      player.choice = 9
+      expect(player.choice).to eql(choice)
     end
   end
   describe '#to_s' do
