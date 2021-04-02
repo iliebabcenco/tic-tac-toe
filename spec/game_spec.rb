@@ -5,7 +5,7 @@ describe GameLogic do
   let(:gl) { Game.new }
   let(:player) { Player.new }
   let(:player2) { Player.new }
-  let(:players) {[player, player2]}
+  let(:players) { [player, player2] }
   describe '#initialize' do
     it 'checking setters and getters for player1 variable from Game class' do
       gl.player1 = player
