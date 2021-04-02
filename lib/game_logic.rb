@@ -6,6 +6,12 @@ module GameLogic
     game_over
   end
 
+  def valid_name(name)
+    return false if name.length <= 1 || name.length > 20 || !name.match(/^[a-z]+$/i)
+
+    true
+  end
+
   private
 
   def check_outcome(player)
@@ -33,11 +39,5 @@ module GameLogic
 
   def game_over
     @game_over
-  end
-
-  def valid_name(name)
-    return false if name.length <= 1 || name.length > 20 || !name.match(/^[a-z]+$/i)
-
-    true
   end
 end

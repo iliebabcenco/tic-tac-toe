@@ -26,9 +26,9 @@ describe Player do
   end
   describe '#to_s' do
     it 'checking to string method' do
-      player.name = "ilie"
+      player.name = 'ilie'
       player.answers = [1, 2, 3]
-      player.symbol = "X"
+      player.symbol = 'X'
       player.choice = 9
       expect(player.to_s).to eql("Name = #{name} answers = #{answers} symbol = #{symbol} choiche = #{choice}")
     end
