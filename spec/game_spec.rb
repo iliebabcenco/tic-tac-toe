@@ -41,9 +41,6 @@ describe GameLogic do
     end
   end
   describe '#main_process_logic' do
-    # 'main process logic returns true (game over) if the player is a winner
-    #   (answers array has winning combination) or we have more than 5 choices for a
-    #   player that means that our player is loser or its a draw: ' do
     it 'returns true because player ilie has winner combination 1, 2, 3' do
       player.answers = [1, 2, 3]
       expect(gl.main_process_logic(player)).to be true
